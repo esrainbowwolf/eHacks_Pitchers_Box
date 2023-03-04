@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Pitches extends Model
 {
     use HasFactory;
+
+    protected $table = 'pitches';
+
+    protected $fillable = [
+        'is_strike',
+        'zone',
+        'speed',
+        'type',
+        'pid',
+    ];
 }

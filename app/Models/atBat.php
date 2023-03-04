@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class atBat extends Model
 {
     use HasFactory;
+
+    protected $table = 'at_bat';
+
+    protected $fillable = [
+        'pitches',
+        'outcome',
+        'pid',
+        'bid',
+    ];
 }
