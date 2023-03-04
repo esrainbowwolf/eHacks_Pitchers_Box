@@ -15,6 +15,5 @@ class Batters extends Model
         'name',
         'hand',
         'jersey',
-        'pid',
     ];
 }
