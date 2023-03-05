@@ -17,4 +17,5 @@ class Pitchers extends Model
         'jersey',
         'gid',
     ];
+    public $timestamps = false;
 }

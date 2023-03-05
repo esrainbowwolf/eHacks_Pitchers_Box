@@ -19,4 +19,5 @@ class outs extends Model
         '2',
         '3',
     ];
+    public $timestamps = false;
 }

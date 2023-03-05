@@ -16,4 +16,5 @@ class Batters extends Model
         'hand',
         'jersey',
     ];
+    public $timestamps = false;
 }

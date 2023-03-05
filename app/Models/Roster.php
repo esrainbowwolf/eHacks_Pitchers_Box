@@ -16,4 +16,5 @@ class Roster extends Model
         'is_pitcher',
         'tid'
     ];
+    public $timestamps = false;
 }
