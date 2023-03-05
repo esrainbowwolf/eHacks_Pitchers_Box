@@ -69,8 +69,8 @@
         <v-col cols="d-flex align-left justify-left">
           <v-responsive class="mx-auto" max-width="500">
             <div class="text-center">
-              <v-select v-model="Batter" :items="Batters" label="Batter"></v-select>
-              <v-menu :Batter="Batter">
+              <v-select v-model="Pitch" :items="Pitches" label="Pitch Type"></v-select>
+              <v-menu :Pitch="Pitch">
 
 
                 <v-list>
@@ -96,20 +96,57 @@
       </v-row>
       <v-row class="d-flex align-center justify-center"><!--row 4-->
         <v-col cols="d-flex align-left justify-left">
+          <v-responsive class="mx-auto" max-width="500">
+            <div class="text-center">
+              <v-select v-model="Zone" :items="Zones" label="Pitch Zones"></v-select>
+              <v-menu :Zone="Zone">
 
+
+                <v-list>
+                  <v-list-item v-for="(item, index) in items" :key="index">
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
+          </v-responsive>
         </v-col>
         <v-col cols="d-flex align-left justify-left">
-          <v-checkbox v-model="ball" :label="`No, called ball`" v-on:click="swing(ball)"></v-checkbox>
-          <v-checkbox v-model="strike" :label="`No, called strike`" v-on:click="swing(strike)"></v-checkbox>
-          <v-checkbox v-model="miss" :label="`Yes, swing and miss`" v-on:click="swing(miss)"></v-checkbox>
-          <v-checkbox v-model="foul" :label="`Yes, foul ball`" v-on:click="swing(foul)"></v-checkbox>
-          <v-checkbox v-model="bip" :label="`Yes, ball in play`" v-on:click="swing(bip)"></v-checkbox>
+          <v-row>
+            <v-responsive class="mx-auto" max-width="100">
+              <div class="text-body-2 font-weight-light mb-n1">Did batter swing?</div>
+            </v-responsive>
+            <v-col cols="d-flex align-left justify-left">
+              <v-checkbox v-model="ball" :label="`No, called ball`" v-on:click="swing(ball)"></v-checkbox>
+              <v-checkbox v-model="strike" :label="`No, called strike`" v-on:click="swing(strike)"></v-checkbox>
+              <v-checkbox v-model="miss" :label="`Yes, swing and miss`" v-on:click="swing(miss)"></v-checkbox>
+              <v-checkbox v-model="foul" :label="`Yes, foul ball`" v-on:click="swing(foul)"></v-checkbox>
+              <v-checkbox v-model="bip" :label="`Yes, ball in play`" v-on:click="swing(bip)"></v-checkbox>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
+      <v-row class="d-flex align-center justify-center"> <!--row 5-->
+        <v-btn color="red" size="large" v-on:click="submitPitch()">Submit Pitch</v-btn>
+      </v-row>
+      <v-row class="d-flex align-center justify-center"> <!--row 6-->
+        <v-col cols="d-flex align-right justify-right">
+          <v-responsive class="mx-auto" max-width="200">
+            <v-text-field label="At Bat result" variant="solo"></v-text-field>
+          </v-responsive>
+        </v-col>
+        <v-col cols="d-flex align-right justify-right">
+          <v-btn color="red" size="large" v-on:click="submitBat()">Submit At Bat</v-btn>
+        </v-col>
+        </v-row>
     </v-responsive>
   </v-container>
 </template>
-
+<style scoped>
+.txt-black.v-label{
+  color: black!important;
+}
+</style>
 <script>
 export default {
   data: () => ({
@@ -127,7 +164,6 @@ export default {
       'end',
       'center',
     ],
-    Pitcher: '',
     Batters: [
       'top',
       'bottom',
@@ -135,7 +171,16 @@ export default {
       'end',
       'center',
     ],
-    Batter: '',
+    Pitches: [
+      'top',
+      'bottom',
+      'start',
+      'end',
+      'center',
+    ],
+    Zones: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+    ],
   }),
   methods: {
     check_one(check) {
@@ -180,6 +225,12 @@ export default {
 
 
     },
+    submitPitch(){
+
+    },
+    submitBat(){
+
+},
   }
 }
 </script>
