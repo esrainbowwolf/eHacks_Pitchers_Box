@@ -1,7 +1,6 @@
 <template>
   <v-container class="fill-height">
-    <v-responsive class="d-flex  fill-height">
-
+    <v-responsive class="d-flex fill-height">
       <v-row class="d-flex align-center justify-center"><!--row 1-->
 
         <v-col cols="d-flex align-left justify-left">
@@ -20,27 +19,22 @@
             <v-text-field label="Time" variant="solo" placeholder="00:00"></v-text-field>
           </v-responsive>
         </v-col>
-
       </v-row>
-      <v-row class="d-flex align-center justify-center"> <!--row 2-->
+      <v-row class="d-flex align-center justify-center">
+        <!--row 2-->
 
         <v-col cols="d-flex align-left justify-left">
           <v-responsive class="mx-auto" max-width="500">
             <div class="text-center">
-
               <v-select v-model="Pitcher" :items="Pitchers" label="Pitcher"></v-select>
 
               <v-menu :Pitcher="Pitcher">
-
-
                 <v-list>
                   <v-list-item v-for="(item, index) in items" :key="index">
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
-
-
             </div>
           </v-responsive>
         </v-col>
@@ -50,8 +44,6 @@
             <div class="text-center">
               <v-select v-model="Batter" :items="Batters" label="Batter"></v-select>
               <v-menu :Batter="Batter">
-
-
                 <v-list>
                   <v-list-item v-for="(item, index) in items" :key="index">
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -61,8 +53,6 @@
             </div>
           </v-responsive>
         </v-col>
-
-
       </v-row>
       <v-row class="d-flex align-center justify-center"><!--row 3-->
 
@@ -91,8 +81,6 @@
             </v-row>
           </v-container>
         </v-col>
-
-
       </v-row>
       <v-row class="d-flex align-center justify-center"><!--row 4-->
         <v-col cols="d-flex align-left justify-left">
@@ -138,13 +126,13 @@
         <v-col cols="d-flex align-right justify-right">
           <v-btn color="red" size="large" v-on:click="submitBat()">Submit At Bat</v-btn>
         </v-col>
-        </v-row>
+      </v-row>
     </v-responsive>
   </v-container>
 </template>
 <style scoped>
-.txt-black.v-label{
-  color: black!important;
+.txt-black.v-label {
+  color: black !important;
 }
 </style>
 <script>
@@ -186,8 +174,7 @@ export default {
     check_one(check) {
       if (check == this.checkbox) {
         this.checkbox2 = false;
-      }
-      else {
+      } else {
         this.checkbox = false;
       }
     },
@@ -197,40 +184,49 @@ export default {
         this.miss = false;
         this.foul = false;
         this.bip = false;
-      }
-      else if (swingResult == this.strike) {
+      } else if (swingResult == this.strike) {
         this.ball = false;
         this.miss = false;
         this.foul = false;
         this.bip = false;
-      }
-      else if (swingResult == this.miss) {
+      } else if (swingResult == this.miss) {
         this.strike = false;
         this.ball = false;
         this.foul = false;
         this.bip = false;
-      }
-      else if (swingResult == this.foul) {
+      } else if (swingResult == this.foul) {
         this.strike = false;
         this.miss = false;
         this.ball = false;
         this.bip = false;
-      }
-      else {
+      } else {
         this.strike = false;
         this.miss = false;
         this.foul = false;
         this.ball = false;
       }
-
+    },
+    submitPitch() {
 
     },
-    submitPitch(){
+    submitBat() {
 
     },
-    submitBat(){
-
-},
+    async mounted() {
+      const resp = await fetch("/api/pbd", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await resp.json();
+      for (let i = 0; i < data.pitchers.length; i++) {
+        this.Pitchers.push(data.pitchers[i].name);
+      }
+      for (let i = 0; i < data.batters.length; i++) {
+        this.Batters.push(data.batters[i].name);
+      }
+    },
   }
-}
+};
 </script>
