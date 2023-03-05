@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GameController;
 
+use App\Models\Pitchers;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/pbd', 'GameController@pitchBat');
+Route::get('/pbd', [GameController::class, 'pitchBat']);
+Route::get('/fix',   function () {
+Pitchers::where('id', 4)->update(["name" => "Hayden Cooper"]);
+    
+});
 
 
 
