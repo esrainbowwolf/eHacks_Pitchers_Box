@@ -243,10 +243,6 @@ export default {
     this.gameOpposing = data.opposingTeam;
     this.gameDate = data.gameDate;
     this.gameTime = data.gameTime;
-    },
-    submitBat() {
-
-    },
   },
 };
 </script>
