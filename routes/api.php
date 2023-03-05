@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
-use App\Models\Games;
+use App\Http\Controllers\PitchesController;
+use App\Http\Controllers\AtBatController;
 
-use App\Models\Pitchers;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,13 +17,6 @@ use App\Models\Pitchers;
 */
 
 Route::get('/pbd', [GameController::class, 'pitchBat']);
-Route::get('/fix',   function () {
- echo Games::where('id', 1)->update(['date' => '2023-03-05', 'time' => '10:00:00']);
-    
-});
+Route::post('/pitches', [PitchesController::class, 'store']);
+Route::post('/atBat', [AtBatController::class, 'store']);
 
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
