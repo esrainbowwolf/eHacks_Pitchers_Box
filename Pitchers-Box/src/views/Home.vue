@@ -1,7 +1,7 @@
 <template>
-  <HelloWorld />
+  <AdminPage />
 </template>
 
 <script setup>
-  import HelloWorld from '@/components/AdminPage.vue'
+  import AdminPage from '@/components/AdminPage.vue'
 </script>

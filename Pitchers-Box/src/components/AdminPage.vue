@@ -20,11 +20,11 @@
           </v-responsive>
         </v-col>
       </v-row>
-      <v-row class="d-flex align-center justify-center">
+      <v-row class="d-flex align-left justify-left">
         <!--row 2-->
 
-        <v-col cols="d-flex align-left justify-left">
-          <v-responsive class="mx-auto" max-width="500">
+        <v-col>
+          <v-responsive class="align-left" max-width="500">
             <div class="text-center">
               <v-select v-model="Pitcher" :items="Pitchers" label="Pitcher"></v-select>
 
@@ -39,8 +39,8 @@
           </v-responsive>
         </v-col>
 
-        <v-col cols="d-flex align-left justify-left">
-          <v-responsive class="mx-auto" max-width="500">
+        <v-col cols="d-flex align-right justify-right">
+          <v-responsive class="pl-5" max-width="500">
             <div class="text-center">
               <v-select v-model="Batter" :items="Batters" label="Batter"></v-select>
               <v-menu :Batter="Batter">
@@ -53,11 +53,12 @@
             </div>
           </v-responsive>
         </v-col>
+        <v-col></v-col>
       </v-row>
       <v-row class="d-flex align-center justify-center"><!--row 3-->
 
         <v-col cols="d-flex align-left justify-left">
-          <v-responsive class="mx-auto" max-width="500">
+          <v-responsive class="align left" max-width="500">
             <div class="text-center">
               <v-select v-model="Pitch" :items="Pitches" label="Pitch Type"></v-select>
               <v-menu :Pitch="Pitch">
@@ -76,67 +77,87 @@
         <v-col cols="auto">
           <v-container fluid>
             <v-row>
-              <v-checkbox v-model="checkbox" :label="`In the zone`" v-on:click="check_one(checkbox)"></v-checkbox>
-              <v-checkbox v-model="checkbox2" :label="`Out of the zone`" v-on:click="check_one(checkbox2)"></v-checkbox>
+              <v-checkbox class="mr-5" v-model="checkbox" :label="`In the zone`"
+                v-on:click="check_one(checkbox)"></v-checkbox>
+              <v-checkbox class="ml-5" v-model="checkbox2" :label="`Out of the zone`"
+                v-on:click="check_one(checkbox2)"></v-checkbox>
             </v-row>
           </v-container>
         </v-col>
+        <v-col></v-col>
       </v-row>
       <v-row class="d-flex align-center justify-center"><!--row 4-->
         <v-col cols="d-flex align-left justify-left">
-          <v-responsive class="mx-auto" max-width="500">
+          <v-img contain height="300" src="@/assets/MLBPitchLocation.png" />
+        </v-col>
+        <v-col cols="d-flex align-left justify-left">
+          <v-responsive class="align-left" max-width="200">
             <div class="text-center">
               <v-select v-model="Zone" :items="Zones" label="Pitch Zones"></v-select>
               <v-menu :Zone="Zone">
 
 
                 <v-list>
-                  <v-list-item v-for="(item, index) in items" :key="index">
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  <v-list-item v-for="(itemz, index) in itemsz" :key="index">
+                    <v-list-item-title>{{ itemz[index] }}</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
             </div>
           </v-responsive>
+          <v-row> <br /></v-row>
+
         </v-col>
         <v-col cols="d-flex align-left justify-left">
-          <v-row>
-            <v-responsive class="mx-auto" max-width="100">
-              <div class="text-body-2 font-weight-light mb-n1">Did batter swing?</div>
-            </v-responsive>
-            <v-col cols="d-flex align-left justify-left">
-              <v-checkbox v-model="ball" :label="`No, called ball`" v-on:click="swing(ball)"></v-checkbox>
-              <v-checkbox v-model="strike" :label="`No, called strike`" v-on:click="swing(strike)"></v-checkbox>
-              <v-checkbox v-model="miss" :label="`Yes, swing and miss`" v-on:click="swing(miss)"></v-checkbox>
-              <v-checkbox v-model="foul" :label="`Yes, foul ball`" v-on:click="swing(foul)"></v-checkbox>
-              <v-checkbox v-model="bip" :label="`Yes, ball in play`" v-on:click="swing(bip)"></v-checkbox>
-            </v-col>
-          </v-row>
+
+          <v-responsive class="align-left" max-width="200">
+            <div class="text-body-2 font-weight-light mb-n1">Did batter swing?</div>
+          </v-responsive>
+          <v-col cols="d-flex align-left justify-left">
+            <v-checkbox v-model="ball" :label="`No, called ball`" v-on:click="swing(ball)"></v-checkbox>
+            <v-checkbox v-model="strike" :label="`No, called strike`" v-on:click="swing(strike)"></v-checkbox>
+            <v-checkbox v-model="miss" :label="`Yes, swing and miss`" v-on:click="swing(miss)"></v-checkbox>
+            <v-checkbox v-model="foul" :label="`Yes, foul ball`" v-on:click="swing(foul)"></v-checkbox>
+            <v-checkbox v-model="bip" :label="`Yes, ball in play`" v-on:click="swing(bip)"></v-checkbox>
+          </v-col>
         </v-col>
       </v-row>
-      <v-row class="d-flex align-center justify-center"> <!--row 5-->
-        <v-btn color="red" size="large" v-on:click="submitPitch()">Submit Pitch</v-btn>
-      </v-row>
-      <v-row class="d-flex align-center justify-center"> <!--row 6-->
-        <v-col cols="d-flex align-right justify-right">
-          <v-responsive class="mx-auto" max-width="200">
+      <v-col>
+        <v-row class="d-flex align-center justify-center"> <!--row 5-->
+          <v-btn color="error" size="large" v-on:click="submitPitch()">Submit Pitch</v-btn>
+        </v-row>
+        <br />
+        <br />
+        <v-row>
+          <v-divider class="border-opacity-100" :thickness="5"></v-divider><!--row 6-->
+        </v-row>
+        <br />
+        <br />
+      </v-col>
+      <v-col class="d-flex align-center justify-center">
+        <v-row class="d-flex align-center justify-center">
+          <v-responsive class="align-center" max-width="200">
             <v-text-field label="At Bat result" variant="solo"></v-text-field>
           </v-responsive>
-        </v-col>
-        <v-col cols="d-flex align-right justify-right">
-          <v-btn color="red" size="large" v-on:click="submitBat()">Submit At Bat</v-btn>
-        </v-col>
-      </v-row>
+        </v-row>
+        <v-row class="d-flex align-center justify-center">
+          <v-btn color="error" size="large" class="fixM" v-on:click="submitBat()">Submit At Bat</v-btn>
+        </v-row>
+      </v-col>
     </v-responsive>
   </v-container>
 </template>
 <style scoped>
-.txt-black.v-label {
+.black {
   color: black !important;
+}
+.fixM{
+  margin-top: -32.5px !important;
 }
 </style>
 <script>
 export default {
+  name: "AdminPage",
   data: () => ({
     checkbox: true,
     checkbox2: false,
@@ -145,26 +166,15 @@ export default {
     miss: false,
     foul: false,
     bip: false,
-    Pitchers: [
-      'top',
-      'bottom',
-      'start',
-      'end',
-      'center',
-    ],
-    Batters: [
-      'top',
-      'bottom',
-      'start',
-      'end',
-      'center',
-    ],
+    Pitchers: [],
+    Batters: [],
     Pitches: [
-      'top',
-      'bottom',
-      'start',
-      'end',
-      'center',
+      'Fastball',
+      'Curveball',
+      'Slider',
+      'Changeup',
+      'Cutter',
+      'Other'
     ],
     Zones: [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
@@ -212,21 +222,21 @@ export default {
     submitBat() {
 
     },
-    async mounted() {
-      const resp = await fetch("/api/pbd", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await resp.json();
-      for (let i = 0; i < data.pitchers.length; i++) {
-        this.Pitchers.push(data.pitchers[i].name);
-      }
-      for (let i = 0; i < data.batters.length; i++) {
-        this.Batters.push(data.batters[i].name);
-      }
-    },
+  },
+  async mounted() {
+    const resp = await fetch("/api/pbd", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await resp.json();
+    for (let i = 0; i < data.pitchers.length; i++) {
+      this.Pitchers.push(data.pitchers[i].name);
+    }
+    for (let i = 0; i < data.batters.length; i++) {
+      this.Batters.push(data.batters[i].name);
+    }
   }
 };
 </script>
