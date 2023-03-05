@@ -18,4 +18,5 @@ class Pitches extends Model
         'type',
         'pid',
     ];
+    public $timestamps = false;
 }

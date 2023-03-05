@@ -17,4 +17,5 @@ class atBat extends Model
         'pid',
         'bid',
     ];
+    public $timestamps = false;
 }
